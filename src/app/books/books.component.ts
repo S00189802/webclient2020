@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Book} from '../book'
+import {IBook} from '../book'
 import {BookService } from '../book.service'
 
 @Component({
@@ -9,25 +9,22 @@ import {BookService } from '../book.service'
 })
 export class BooksComponent implements OnInit {
 
-  books: Book[]  
+  books: IBook[]  
   test : string[]
 
   constructor (private bookService: BookService){}
 
   ngOnInit(): void {
-    this.getBooks();
-    this.test = ['a','b','c']
-  }
 
-    getBooks(): void {
+    console.log('in ngOnInit');
 
     this.bookService.getBooks()
-    .subscribe (books => {
-      console.log(books.length);
-      this.books = books })
+    .subscribe ({
+      next: (value: IBook[] )=> {
+        this.books = value;},
+        complete:() => console.log('all done') 
+      });
+
+      this.test = ['a','b','c'];
+    }
   }
-
-
-   
-
-}

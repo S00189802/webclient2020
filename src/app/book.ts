@@ -1,11 +1,6 @@
-export interface Book {
+export interface IBook {
 
     title: String,
-        // starRating: number,
-        summary: String,
-        keywords: String[ ],
-        isbn: String,
-        _id,
-        uri,
-        id
+        
+
 }

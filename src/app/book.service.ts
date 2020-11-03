@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Book } from './book'
+import { IBook } from './book'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  constructor(private http: HttpClient)
-    { }
+  constructor(private http: HttpClient) { }
 
-    books: Book[] = [{title: 'goodbye',  isbn: '123', summary: '', keywords: [], _id : '', uri: '', id: ''},
-    {title: 'again',  isbn: '456', summary: '', keywords: [], _id : '', uri: '', id: ''},
-    {title: 'tomorrow',  isbn: '321', summary: '', keywords: [], _id : '', uri: '', id: ''},
-    {title: 'tomorrow',  isbn: '321', summary: '', keywords: [], _id : '', uri: '', id: ''}];
-
-
-    getBooks() : Observable <Book[]> {
-
-    
-
-    
-    
-      return of(this.books);
+  books: IBook[] = [{ title: 'goodbye' },
+  { title: 'again' },
+  { title: 'tomorrow' },
+  { title: 'yesterday' },
+  { title: 'another' }];
 
 
-     //  return this.http.get<Book[]>('http://localhost:3000/');
+  getBooks(): Observable<IBook[]> {
 
-      
-      }
+    console.log("get books called");
+
+
+
+
+    return of(this.books);
+
+
+
+
+  }
 }
