@@ -21,8 +21,7 @@ export class BookService {
   getBooks(): Observable<IBook[]> {
 
     console.log("get books called");
-
-
+    
 
 
     return of(this.books);
