@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {IBook} from '../book'
-import {BookService } from '../book.service'
+import {IBook} from '../book';
+import { BookService } from '../book.service';
+
 
 @Component({
   selector: 'app-books',
@@ -12,10 +13,9 @@ export class BooksComponent implements OnInit {
   books: IBook[]  
   test : string[]
 
-  constructor (private bookService: BookService){}
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-
     console.log('in ngOnInit');
 
     this.bookService.getBooks()
@@ -26,5 +26,6 @@ export class BooksComponent implements OnInit {
       });
 
       this.test = ['a','b','c'];
-    }
   }
+
+}
