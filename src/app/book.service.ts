@@ -11,11 +11,11 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  books: IBook[] = [{ title: 'goodbye' },
-  { title: 'again' },
-  { title: 'tomorrow' },
-  { title: 'yesterday' },
-  { title: 'another' }];
+  // books: IBook[] = [{ title: 'goodbye' },
+  // { title: 'again' },
+  // { title: 'tomorrow' },
+  // { title: 'yesterday' },
+  // { title: 'another' }];
 
 
   getBooks(): Observable<IBook[]> {
@@ -24,7 +24,7 @@ export class BookService {
     
 
 
-    return of(this.books);
+    return this.http.get<IBook[]>('http://localhost:3000/books?limit=10');
 
 
 
