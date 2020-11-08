@@ -1,0 +1,22 @@
+
+<div class="container-fluid">
+
+    <div>
+      <!-- <app-book-row class="card" *ngFor="let b of bookList" [book]=b (click)='clicked(c)'
+        [class.bg-info]="isSelected(b)" [class.text-white]="isSelected(b)"> 
+          </app-book-row>
+  -->
+
+        <app-book-row *ngFor="let b of bookList" [book]=b></app-book-row>
+  
+
+        
+      <app-book-details *ngIf="currentBook" [book]="currentBook">
+  
+      </app-book-details>
+    </div>
+  
+  
+  
+  
+  </div>
