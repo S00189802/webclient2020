@@ -9,6 +9,8 @@ import { catchError, map, tap } from 'rxjs/operators'
 })
 export class BookService {
 
+  private dataUri = 'http://localhost:3000/books'
+
   constructor(private http: HttpClient) { }
 
   // books: IBook[] = [{ title: 'goodbye' },
@@ -20,28 +22,32 @@ export class BookService {
 
   getBooks(limit?: number): Observable<IBook[]> {
 
-    console.log("get books called with limit of " + limit );
+    console.log("get books called with limit of " + limit);
 
 
 
-    return this.http.get<IBook[]>(`http://localhost:3000/books?limit=${limit}`)
-    .pipe(
-      tap({complete: () => console.log('handling get request')}),
-      catchError(this.handleError)
-    )
+    return this.http.get<IBook[]>(`${this.dataUri}?limit=${limit}`)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
+
+  //taken from: https://angular.io/guide/http
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // here this is a client side error
-      console.error('Error occured in getBooks service', error.error.message)
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
-    else {
-      console.error(`Backend error ${error.status}
-      body was: ${error.error}`);
-    }
-
+    // Return an observable with a user-facing error message.
     return throwError(
-      'Unable to handle request, please try again later')
+      'Something bad happened; please try again later.');
   }
+
 }
