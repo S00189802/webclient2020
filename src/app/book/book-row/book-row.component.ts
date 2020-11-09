@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IBook } from 'src/app/book';
+import { IBook } from 'src/app/model/book';
 
 @Component({
   selector: 'app-book-row',
