@@ -31,4 +31,13 @@ export class BookListComponent implements OnInit {
     this.currentBook = book;
   }
 
+  isSelected(book: IBook): boolean{
+    if (!book || !this.currentBook) {
+      return false;
+    }
+    else {
+      return book.id === this.currentBook.id;
+    }
+  }
+
 }
