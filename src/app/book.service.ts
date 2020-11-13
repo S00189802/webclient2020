@@ -13,7 +13,12 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-
+addBook(book: IBook): Observable<IBook>{
+  return this.http.post<IBook>(this.dataUri,book)
+  .pipe(
+    catchError(this.handleError)
+  )
+}
 
 
   getBooks(): Observable<IBook[]> {

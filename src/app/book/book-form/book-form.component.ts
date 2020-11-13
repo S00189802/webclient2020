@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BookService } from '../../book.service'
 
 @Component({
   selector: 'app-book-form',
@@ -23,7 +24,7 @@ export class BookFormComponent implements OnInit {
 
   //title = new FormControl('');
 
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +37,14 @@ export class BookFormComponent implements OnInit {
 
 
   onSubmit() { 
-    console.warn(this.bookForm.value) }
+    console.warn(this.bookForm.value);
+    let newbook =  {summary: 'dsfdsfa', ...this.bookForm.value};
+    console.log(JSON.stringify(newbook))
+    this.bookService.addBook(newbook)
+  .subscribe(
+    book => console.log(JSON.stringify(book) + ' has been added'))
+   }
+
+
 
 }
