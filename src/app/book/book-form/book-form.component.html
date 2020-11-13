@@ -1,0 +1,31 @@
+<p>book-form works!</p>
+
+<!-- <label>Name: <input type="text" [formControl]="title"></label> -->
+
+<!-- <button class="btn btn-primary" (click)="updateTitle()" > Change Title</button> -->
+<!-- <p>Title is now {{title.value}}</p> -->
+
+<form [formGroup]="bookForm" (ngSubmit) = "onSubmit()">
+<div >
+    <label for="title"> Title</label>
+    <input id="title" type="text" formControlName="title">
+</div>
+<div >
+    <label for="isbn"> ISBN</label>
+    <input id="isbn" type="text" formControlName="isbn">
+</div>
+
+<button type="submit" [disabled]="!bookForm.valid">Submit</button>
+
+<p>{{bookForm.value["title"]}}  {{bookForm.value["isbn"]}}</p>
+
+<div *ngIf="title.invalid && title.touched" class="alert alert-danger" >
+    Title is required
+</div>
+
+</form>
+
+
+
+
+

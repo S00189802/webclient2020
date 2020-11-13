@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookListComponent } from './book/book-list/book-list.component';
 import { BookRowComponent } from './book/book-row/book-row.component';
 import { BookDetailsComponent } from './book/book-details/book-details.component';
+import { BookFormComponent } from './book/book-form/book-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,12 +18,15 @@ import { BookDetailsComponent } from './book/book-details/book-details.component
     AppComponent,
     BookListComponent,
     BookRowComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
