@@ -9,6 +9,7 @@ import { BookService } from '../../book.service'
 })
 export class BookFormComponent implements OnInit {
 
+message: string = '';
 
   bookForm = new FormGroup({
     title: new FormControl('',[Validators.required]),
@@ -41,8 +42,11 @@ export class BookFormComponent implements OnInit {
     let newbook =  {summary: 'dsfdsfa', ...this.bookForm.value};
     console.log(JSON.stringify(newbook))
     this.bookService.addBook(newbook)
-  .subscribe(
-    book => console.log(JSON.stringify(book) + ' has been added'))
+  .subscribe({
+    next:  book => console.log(JSON.stringify(book) + ' has been added'),
+    error: (err) => this.message = err
+  })
+   
    }
 
 
