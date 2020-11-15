@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IBook } from 'src/app/model/book';
 import { BookService } from '../../book.service'
 
 @Component({
@@ -9,46 +10,36 @@ import { BookService } from '../../book.service'
 })
 export class BookFormComponent implements OnInit {
 
-message: string = '';
+
+  @Output() newBookEvent = new EventEmitter<IBook>();
+
+  message: string = '';
 
   bookForm = new FormGroup({
-    title: new FormControl('',[Validators.required]),
+    title: new FormControl('', [Validators.required]),
     isbn: new FormControl('')
   });
 
   get title() {
     return this.bookForm.get('title');
   }
-  get isbn(){
+  get isbn() {
     return this.bookForm.get('isbn');
   }
 
   //title = new FormControl('');
 
-  constructor(private bookService: BookService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  
-
-  // updateTitle(){
-  //   this.title.setValue('Una is great again!');
-  // }
-
-
-  onSubmit() { 
-    console.warn(this.bookForm.value);
-    let newbook =  {summary: 'dsfdsfa', ...this.bookForm.value};
-    console.log(JSON.stringify(newbook))
-    this.bookService.addBook(newbook)
-  .subscribe({
-    next:  book => console.log(JSON.stringify(book) + ' has been added'),
-    error: (err) => this.message = err
-  })
-   
-   }
-
-
+  onSubmit() {
+    this.newBookEvent.emit(this.bookForm.value)
+  }
 
 }
+
+
+
+
