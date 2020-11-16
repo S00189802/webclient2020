@@ -1,13 +1,19 @@
 
-<div>Book-list works!</div>
 
-  
-  <h2 *ngIf="message">{{message}}</h2>
+<div class="container-fluid">
 
+<!-- Example of an ng-bootstrap component -->
+
+  <p>
+    <ngb-alert *ngIf="message" [dismissible]="true">
+      <strong>Warning!</strong> {{message}}
+    </ngb-alert>
+  </p>
  
-    <app-book-row *ngFor="let b of bookList"
+    <app-book-row class="card" *ngFor="let b of bookList"
     [book]="b"
-    (click)='clicked(b)'></app-book-row>
+    (click)='clicked(b)'
+    [class.bg-info]="isSelected(b)" [class.text-white]="isSelected(b)"></app-book-row>
 
     <app-book-details *ngIf="currentBook" [book]="currentBook">
  </app-book-details>
@@ -18,3 +24,4 @@
     (newBookEvent)="addNewBook($event)"></app-book-form>  
   
 
+  </div>
