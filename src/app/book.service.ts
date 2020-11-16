@@ -13,17 +13,17 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-addBook(book: IBook): Observable<IBook>{
-  return this.http.post<IBook>(this.dataUri,book)
-  .pipe(
-    catchError(this.handleError)
-  )
-}
+  addBook(book: IBook): Observable<IBook> {
+    return this.http.post<IBook>(this.dataUri, book)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
 
 
   getBooks(): Observable<IBook[]> {
 
-    console.log("get books called" );
+    console.log("get books called");
 
 
 
@@ -42,9 +42,22 @@ addBook(book: IBook): Observable<IBook>{
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
+
+
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was: ${JSON.stringify(error.error)}`);
+
+
+
+      // question over how much information you want to give to the end-user
+      // it depends on who will be using the system
+      // this information would not be returned in a public interface but might in an intranet.
+
+      if (error.status == 412) {
+        return throwError('412 Error' + JSON.stringify(error.error))
+      }
+
     }
     // Return an observable with a user-facing error message.
     return throwError(

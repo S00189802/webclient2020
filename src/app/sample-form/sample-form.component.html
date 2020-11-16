@@ -1,6 +1,8 @@
 <p>sample-form works!</p>
 
 
+{{message}}
+
 <form [formGroup]="bookForm" (ngSubmit) = "onSubmit()">
     <div >
         <label for="title"> Title</label>
@@ -10,15 +12,22 @@
         <label for="isbn"> ISBN</label>
         <input id="isbn" type="text" formControlName="isbn">
     </div>
+    <div >
+        <label for="summary"> Summary</label>
+        <input id="summary" type="text" formControlName="summary">
+    </div>
     
     <button type="submit" [disabled]="!bookForm.valid">Submit</button>
 
     <div *ngIf="title.invalid && title.touched"  class="alert alert-danger" >
         Title is required and must be at least 4 letters
     </div>
-    <!-- <div *ngIf="isbn.invalid && isbn.touched" class="alert alert-danger" >
+    <div *ngIf="isbn.invalid && isbn.touched" class="alert alert-danger" >
         ISBN is required
-    </div> -->
+    </div>
+    <div *ngIf="summary.invalid && summary.touched" class="alert alert-danger" >
+        ISBN is required
+    </div>
 </form>
 
 {{this.bookForm.get('title').value}}

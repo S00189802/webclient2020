@@ -16,8 +16,9 @@ export class BookFormComponent implements OnInit {
   message: string = '';
 
   bookForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    isbn: new FormControl('')
+    title: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    isbn: new FormControl('', [Validators.required]),
+    summary: new FormControl('',[Validators.required])
   });
 
   get title() {
@@ -25,6 +26,9 @@ export class BookFormComponent implements OnInit {
   }
   get isbn() {
     return this.bookForm.get('isbn');
+  }
+  get summary() {
+    return this.bookForm.get('summary');
   }
 
   //title = new FormControl('');

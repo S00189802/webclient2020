@@ -2,10 +2,7 @@
 
 {{message}}
 
-<!-- <label>Name: <input type="text" [formControl]="title"></label> -->
 
-<!-- <button class="btn btn-primary" (click)="updateTitle()" > Change Title</button> -->
-<!-- <p>Title is now {{title.value}}</p> -->
 
 <form [formGroup]="bookForm" (ngSubmit) = "onSubmit()">
 <div >
@@ -16,6 +13,10 @@
     <label for="isbn"> ISBN</label>
     <input id="isbn" type="text" formControlName="isbn">
 </div>
+<div >
+    <label for="summary"> Summary</label>
+    <input id="summary" type="text" formControlName="summary">
+</div>
 
 <button type="submit" [disabled]="!bookForm.valid">Submit</button>
 
@@ -23,6 +24,12 @@
 
 <div *ngIf="title.invalid && title.touched" class="alert alert-danger" >
     Title is required
+</div>
+<div *ngIf="isbn.invalid && isbn.touched" class="alert alert-danger" >
+    ISBN is required
+</div>
+<div *ngIf="summary.invalid && summary.touched" class="alert alert-danger" >
+    ISBN is required
 </div>
 
 </form>
