@@ -16,9 +16,12 @@
     [class.bg-info]="isSelected(b)" [class.text-white]="isSelected(b)"></app-book-row>
 
     <app-book-details *ngIf="currentBook" [book]="currentBook">
+ </app-book-details>
 
-    </app-book-details>
+    <button (click)="openAddBook()" *ngIf="!addBook">Add Book</button>
 
+    <app-book-form *ngIf="addBook" 
+    (newBookEvent)="addNewBook($event)"></app-book-form>  
   
 
   </div>
