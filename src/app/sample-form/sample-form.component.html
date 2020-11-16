@@ -1,0 +1,26 @@
+<p>sample-form works!</p>
+
+
+<form [formGroup]="bookForm" (ngSubmit) = "onSubmit()">
+    <div >
+        <label for="title"> Title</label>
+        <input id="title" type="text" formControlName="title">
+    </div>
+    <div >
+        <label for="isbn"> ISBN</label>
+        <input id="isbn" type="text" formControlName="isbn">
+    </div>
+    
+    <button type="submit" [disabled]="!bookForm.valid">Submit</button>
+
+    <div *ngIf="title.invalid && title.touched"  class="alert alert-danger" >
+        Title is required and must be at least 4 letters
+    </div>
+    <!-- <div *ngIf="isbn.invalid && isbn.touched" class="alert alert-danger" >
+        ISBN is required
+    </div> -->
+</form>
+
+{{this.bookForm.get('title').value}}
+
+{{isbn.value}}
