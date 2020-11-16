@@ -29,8 +29,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    bootstrap
-    NgbModule
+    NgbModule,
     ReactiveFormsModule,
     FormsModule
   ],
