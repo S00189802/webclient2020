@@ -16,7 +16,7 @@ export class BookFormComponent implements OnInit {
   message: string = '';
 
   bookForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(4)]),
     isbn: new FormControl('', [Validators.required]),
     summary: new FormControl('',[Validators.required])
   });

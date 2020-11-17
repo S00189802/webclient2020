@@ -12,7 +12,7 @@ export class BookListComponent implements OnInit {
 
   bookList: IBook[];
   message: string;
-  addBook: boolean = false;
+  showAddBookForm: boolean = false;
 
   currentBook: IBook;
 
@@ -33,7 +33,7 @@ export class BookListComponent implements OnInit {
   }
   openAddBook(): void {
     this.currentBook = null;
-    this.addBook = true;
+    this.showAddBookForm = true;
   }
 
   addNewBook(newBook: IBook): void {
@@ -45,7 +45,7 @@ export class BookListComponent implements OnInit {
         this.message = "new book has been added";},
         error: (err) => this.message = err
       });
-    this.addBook = false;
+    this.showAddBookForm = false;
   }
 
   isSelected(book: IBook): boolean{

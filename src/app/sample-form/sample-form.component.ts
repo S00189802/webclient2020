@@ -20,7 +20,7 @@ export class SampleFormComponent implements OnInit {
 
   bookForm = new FormGroup({
     title: new FormControl('blahblah', [Validators.required, Validators.minLength(4)]),
-    isbn: new FormControl('', [Validators.required]),
+    isbn: new FormControl('', Validators.required),
     summary: new FormControl('',[Validators.required])
   });
 

@@ -24,13 +24,13 @@
 <p>{{bookForm.value["title"]}}  {{bookForm.value["isbn"]}}</p>
 
 <div *ngIf="title.invalid && title.touched" class="alert alert-danger" >
-    Title is required
+    Title is required and must be at least 4 characters
 </div>
 <div *ngIf="isbn.invalid && isbn.touched" class="alert alert-danger" >
     ISBN is required
 </div>
 <div *ngIf="summary.invalid && summary.touched" class="alert alert-danger" >
-    ISBN is required
+    Summary is required
 </div>
 
 </form>

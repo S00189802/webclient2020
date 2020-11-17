@@ -18,10 +18,10 @@
     <app-book-details *ngIf="currentBook" [book]="currentBook">
  </app-book-details>
 
-    <button (click)="openAddBook()" *ngIf="!addBook"
+    <button (click)="openAddBook()" *ngIf="!showAddBookForm"
     class="btn btn-lg btn-outline-primary" >Add Book</button>
 
-    <app-book-form *ngIf="addBook" 
+    <app-book-form *ngIf="showAddBookForm" 
     (newBookEvent)="addNewBook($event)"></app-book-form>  
   
 
