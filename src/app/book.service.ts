@@ -20,6 +20,14 @@ export class BookService {
       )
   }
 
+  updateBook(id: string, book: IBook): Observable<IBook> {
+    console.log('subscribing to update' + id);
+    let bookURI: string = this.dataUri + '/' + id;
+    return this.http.put<IBook>(bookURI, book)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
 
   getBooks(): Observable<IBook[]> {
 

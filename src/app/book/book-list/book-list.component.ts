@@ -3,6 +3,7 @@ import { IBook } from '../../model/book'
 import { BookService } from '../../book.service'
 
 
+
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -12,7 +13,7 @@ export class BookListComponent implements OnInit {
 
   bookList: IBook[];
   message: string;
-  showAddBookForm: boolean = false;
+  showBookForm: boolean = false;
 
   currentBook: IBook;
 
@@ -33,8 +34,43 @@ export class BookListComponent implements OnInit {
   }
   openAddBook(): void {
     this.currentBook = null;
-    this.showAddBookForm = true;
+    this.showBookForm = true;
   }
+
+  openEditBook(): void {
+    this.showBookForm = true;
+  }
+
+bookFormClose(book: IBook): void{
+  this.showBookForm = null;
+  console.table(book);
+  if (book == null){
+    this.currentBook = null;
+  }
+  else if (this.currentBook == null){
+    this.addNewBook(book);
+  }
+  else {
+    console.log('need to update book with id ' + this.currentBook.id);
+    this.updateBook(this.currentBook.id, book)
+  }
+}
+  
+updateBook (id: string, book: IBook){
+  this.bookService.updateBook(id, book)
+  .subscribe({
+    next: book => this.message = "book has been modified",
+    error: (err) => this.message = err
+  });
+
+// so the updated list appears
+
+    this.bookService.getBooks().subscribe({
+      next: (value: IBook[]) => this.bookList = value,
+      complete: () => console.log('book service finished'),
+      error: (mess) => this.message = mess
+    })
+}
 
   addNewBook(newBook: IBook): void {
     console.log('adding new book ' + JSON.stringify(newBook));
@@ -45,7 +81,6 @@ export class BookListComponent implements OnInit {
         this.message = "new book has been added";},
         error: (err) => this.message = err
       });
-    this.showAddBookForm = false;
   }
 
   isSelected(book: IBook): boolean{

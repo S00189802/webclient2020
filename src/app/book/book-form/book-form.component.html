@@ -2,7 +2,9 @@
 
 {{message}}
 
-
+<button type="button" class="close" aria-label="Close" (click)="closeForm()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 
 <form [formGroup]="bookForm" (ngSubmit) = "onSubmit()"  >
 <div class="form-group" >
@@ -21,7 +23,7 @@
 
 <button type="submit" [disabled]="!bookForm.valid" class="btn btn-lg btn-primary">Submit</button>
 
-<p>{{bookForm.value["title"]}}  {{bookForm.value["isbn"]}}</p>
+
 
 <div *ngIf="title.invalid && title.touched" class="alert alert-danger" >
     Title is required and must be at least 4 characters

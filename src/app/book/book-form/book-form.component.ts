@@ -10,16 +10,15 @@ import { BookService } from '../../book.service'
 })
 export class BookFormComponent implements OnInit {
 
+  @Input() book : IBook;
 
-  @Output() newBookEvent = new EventEmitter<IBook>();
+  @Output() bookFormClose = new EventEmitter<IBook>();
 
   message: string = '';
+  isNewBookForm: boolean = false;
+  bookForm: FormGroup;
 
-  bookForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    isbn: new FormControl('', [Validators.required]),
-    summary: new FormControl('',[Validators.required])
-  });
+  
 
   get title() {
     return this.bookForm.get('title');
@@ -31,15 +30,28 @@ export class BookFormComponent implements OnInit {
     return this.bookForm.get('summary');
   }
 
-  //title = new FormControl('');
-
   constructor() { }
 
   ngOnInit(): void {
+    console.table(this.book);
+    if (this.book == null) {
+      this.book = {title:'', isbn: '', summary: '', id:'', keywords:[]};
+      this.isNewBookForm = true;
+    }
+
+    this.bookForm = new FormGroup({
+      title: new FormControl(this.book.title, [Validators.required, Validators.minLength(4)]),
+      isbn: new FormControl(this.book.isbn, [Validators.required]),
+      summary: new FormControl(this.book.summary,[Validators.required])
+    });
   }
 
   onSubmit() {
-    this.newBookEvent.emit(this.bookForm.value)
+    this.bookFormClose.emit(this.bookForm.value)
+  }
+
+  closeForm(){
+    this.bookFormClose.emit(null)
   }
 
 }
