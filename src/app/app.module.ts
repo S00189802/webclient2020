@@ -14,8 +14,18 @@ import { BookFormComponent } from './book/book-form/book-form.component';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SampleFormComponent } from './sample-form/sample-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+//import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 
+import { JwtModule } from '@auth0/angular-jwt';
+
+// this function is used to descibe where to get the 
+// jwt to use when sending http requests.
+
+export function tokenGetter() {
+  return localStorage.getItem('id_token');
+}
 
 @NgModule({
   declarations: [
@@ -25,7 +35,9 @@ import { FacebookLoginComponent } from './facebook-login/facebook-login.componen
     BookDetailsComponent,
     BookFormComponent,
     SampleFormComponent,
-    FacebookLoginComponent
+    LoginComponent,
+    DashboardComponent
+   // FacebookLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +45,13 @@ import { FacebookLoginComponent } from './facebook-login/facebook-login.componen
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        headerName: 'x-auth-token'
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
