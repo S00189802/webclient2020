@@ -14,6 +14,8 @@ import { BookFormComponent } from './book/book-form/book-form.component';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SampleFormComponent } from './sample-form/sample-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BookRowComponent,
     BookDetailsComponent,
     BookFormComponent,
-    SampleFormComponent
+    SampleFormComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
