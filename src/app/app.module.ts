@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
 
@@ -16,6 +17,8 @@ import { SampleFormComponent } from './sample-form/sample-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { appInitializer } from './helpers/app.initializer';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [UserService] },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

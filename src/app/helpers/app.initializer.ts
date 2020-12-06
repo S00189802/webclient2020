@@ -1,7 +1,7 @@
-import { AccountService } from '@app/_services';
-import { environment } from '@environments/environment';
+import { UserService } from '../user.service'
+import { environment } from '../../environments/environment';
 
-export function appInitializer(accountService: AccountService) {
+export function appInitializer(userService: UserService) {
     return () => new Promise(resolve => {
         // wait for facebook sdk to initialize before starting the angular app
         window['fbAsyncInit'] = function () {
@@ -15,7 +15,7 @@ export function appInitializer(accountService: AccountService) {
             // auto authenticate with the api if already logged in with facebook
             FB.getLoginStatus(({authResponse}) => {
                 if (authResponse) {
-                    accountService.apiAuthenticate(authResponse.accessToken)
+                    userService.apiAuthenticate(authResponse.accessToken)
                         .subscribe()
                         .add(resolve);
                 } else {
