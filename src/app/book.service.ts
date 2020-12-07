@@ -3,13 +3,18 @@ import { IBook } from './model/book'
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
+import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  private dataUri = 'http://localhost:3000/books'
+
+
+ dataUri = `${environment.apiUrl}/books`;
+
 
   constructor(private http: HttpClient) { }
 

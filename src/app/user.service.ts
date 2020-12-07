@@ -53,11 +53,11 @@ export class UserService {
         // authenticate with the api using a facebook access token,
         // on success the api returns an user object with a JWT auth token
         return this.http.post<any>(`${environment.apiUrl}/auth/facebook`, { accessToken })
-            .pipe(map(account => {
-               console.log(account);
-                this.userSubject.next(account);
+            .pipe(map(user => {
+               console.log(user);
+                this.userSubject.next(user);
                 this.startAuthenticateTimer();
-                return account;
+                return user;
             }));
     }
 

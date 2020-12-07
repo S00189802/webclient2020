@@ -20,6 +20,7 @@ export class AuthGuard implements CanActivate {
     const user = this.userService.userValue
 
     if (user) {
+      console.log(user.appToken)
 
       return true;
     }
