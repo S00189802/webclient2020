@@ -14,8 +14,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             if ([401, 403].includes(err.status)) {
                 // auto logout if 401 or 403 response returned from api
                
-                // remove the logout on api error for the moment to allow easier testing
-              //   this.userService.logout();
+               // remove the logout on api error for the moment to allow easier testing
+               this.userService.logout();
 
             }
 

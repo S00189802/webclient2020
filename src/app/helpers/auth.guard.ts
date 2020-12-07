@@ -19,6 +19,9 @@ export class AuthGuard implements CanActivate {
 
     const user = this.userService.userValue
 
+// note this is currently only checking if there is a user.
+// it doesn't use the permission levels.
+
     if (user) {
       console.log(user.appToken)
 
